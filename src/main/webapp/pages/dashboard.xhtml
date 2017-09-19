@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Dashboard</ui:define>
+    <ui:define name="content">
+            <div class="ui-g">
+                    <div class="ui-g-6 ui-md-6">
+                        <h:form>
+                            <p:panel header="Top Destination Region" >
+                                <pe:gChart id="geo" value="#{dashboard.topRegionChart}" height="350" />
+                            </p:panel>
+                        </h:form>
+                    </div>
+                    <div class="ui-g-6 ui-md-6">
+                        <h:form>
+                            <p:panel header="Top 10 Web Sites">
+                                <pe:gChart id="pie" value="#{dashboard.topWebChart}" height="350" />
+                            </p:panel>
+                        </h:form>
+                    </div>
+                    <div class="ui-g-6 ui-md-4">
+                        <p:panel header="Top Wan Host">
+                            <p:dataTable value="#{dashboard.topWanHost}" var="wan" style="text-align: center">
+                                <p:column headerText="Ip Address">
+                                    <h:outputText value="#{wan.dst_ip}" />
+                                </p:column>
+                                <p:column headerText="Location">
+                                    <h:outputText value="#{wan.location}" />
+                                    <p:spacer width="20" />
+                                    <p:graphicImage url="../images/flags/#{wan.location.toLowerCase()}.png"/>
+                                </p:column>
+                                <p:column headerText="Total">
+                                    <h:outputText value="#{wan.byteFormat}" />
+                                </p:column>
+                                <p:column headerText="Hits">
+                                    <h:outputText value="#{wan.hits}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </div>
+                    <div class="ui-g-6 ui-md-4">
+                        <p:panel header="Top Lan Host">
+                            <p:dataTable value="#{dashboard.topLanHost}" var="lan" style="text-align: center">
+                                <p:column headerText="Ip Address">
+                                    <h:outputText value="#{lan.src_ip}" />
+                                </p:column>
+                                <p:column headerText="Total">
+                                    <h:outputText value="#{lan.byteFormat}" />
+                                </p:column>
+                                <p:column headerText="Hits">
+                                    <h:outputText value="#{lan.hits}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </div>
+                    <div class="ui-g-6 ui-md-4">
+                        <p:panel header="Content">
+                            <p:dataTable value="#{dashboard.content}" var="content" style="text-align: center">
+                                <p:column headerText="Term">
+                                    <h:outputText value="#{content.content}" />
+                                </p:column>
+                                <p:column headerText="Count">
+                                    <h:outputText value="#{content.hits}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panel>
+                    </div>
+                </div>
+    </ui:define>
+</ui:composition>

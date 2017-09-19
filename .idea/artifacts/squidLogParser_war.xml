@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="squidLogParser:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="parser-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="squidLogParser:war exploded" />
+    </root>
+  </artifact>
+</component>

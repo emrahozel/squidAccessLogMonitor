@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Dashboard</ui:define>
+    <ui:define name="content">
+        <h:form id="reportForm">
+            <p:toolbar rendered="true">
+                <f:facet name="right">
+                    <p:toolbarGroup align="right" style="font-size: 12px">
+                        <p:inputText placeholder="Search" value="#{report.wildcard}"  style="width: 350px"/>
+                        <p:commandButton value="Search" update=":reportForm:reportTable" actionListener="#{report.search}" icon="ui-icon-search" />
+                    </p:toolbarGroup>
+                </f:facet>
+                <f:facet name="left">
+
+                </f:facet>
+            </p:toolbar>
+            <p:dataTable value="#{report.reportList}" id="reportTable" var="data" style="margin: 0; padding: 0; font-size: 12px; text-align: center"
+                         paginator="true" rows="50">
+                <p:column headerText="timestamp">
+                    <h:outputText value="#{data.timestamp}" />
+                </p:column>
+                <p:column headerText="user">
+                    <h:outputText value="#{data.user}" />
+                </p:column>
+                <p:column headerText="src_ip">
+                    <h:outputText value="#{data.src_ip}" />
+                </p:column>
+                <p:column headerText="dst_ip">
+                    <h:outputText value="#{data.dst_ip}" />
+                </p:column>
+                <p:column headerText="dst_host">
+                    <h:outputText value="#{data.dst_host}" />
+                </p:column>
+                <p:column headerText="request_url">
+                    <h:outputText value="#{data.request_url}" />
+                </p:column>
+                <p:column headerText="location">
+                    <h:outputText value="#{data.location}" />
+                </p:column>
+                <p:column headerText="status_code">
+                    <h:outputText value="#{data.status_code}" />
+                </p:column>
+                <p:column headerText="method">
+                    <h:outputText value="#{data.method}" />
+                </p:column>
+                <p:column headerText="content">
+                    <h:outputText value="#{data.content}" />
+                </p:column>
+                <p:column headerText="bytes">
+                    <h:outputText value="#{data.bytes}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
